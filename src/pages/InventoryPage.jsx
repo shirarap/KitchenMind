@@ -14,9 +14,6 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useInventory } from "../hooks/useInventory";
 
-/**
- * עמוד ניהול מלאי - כולל הצגת מוצרים והוספת חדשים
- */
 const InventoryPage = () => {
   const { products, add, remove } = useInventory();
   const [formData, setFormData] = useState({
@@ -41,7 +38,6 @@ const InventoryPage = () => {
       expiryDate: formData.expiryDate || null,
     });
 
-    // ניקוי שדות
     setFormData({ name: "", quantity: "", expiryDate: "" });
   };
 
@@ -50,13 +46,39 @@ const InventoryPage = () => {
   };
 
   return (
-    <Box p={3}>
-      <Typography variant="h4" gutterBottom>ניהול מלאי</Typography>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        backgroundImage: "url('/shelf.png')",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        backgroundPosition: "center -310px",
+        pt: 5,
+      }}
+    >
+      <Paper
+        elevation={6}
+        sx={{
+          backgroundColor: "rgba(255, 255, 255, 0.9)",
+          padding: 4,
+          borderRadius: 2,
+          maxWidth: "800px",
+          width: "100%",
+        }}
+      >
+        <Typography variant="h4" gutterBottom align="center">
+          ניהול מלאי
+        </Typography>
 
-      {/* טופס הוספת מוצר */}
-      <Paper elevation={3} sx={{ p: 2, mb: 4 }}>
-        <Typography variant="h6">הוספת מוצר חדש</Typography>
-        <Grid container spacing={2} alignItems="center" mt={1}>
+        {/* טופס הוספת מוצר */}
+        <Typography variant="h6" gutterBottom>
+          הוספת מוצר חדש
+        </Typography>
+        <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} sm={4}>
             <TextField
               label="שם המוצר"
@@ -93,31 +115,35 @@ const InventoryPage = () => {
             </Button>
           </Grid>
         </Grid>
-      </Paper>
 
-      {/* רשימת מוצרים קיימים */}
-      <Typography variant="h6">מוצרים במלאי:</Typography>
-      <List>
-        {products.map((product) => (
-          <ListItem
-            key={product.id}
-            secondaryAction={
-              <IconButton edge="end" onClick={() => handleDelete(product.id)}>
-                <DeleteIcon />
-              </IconButton>
-            }
-          >
-            <ListItemText
-              primary={`${product.name} - ${product.quantity} יחידות`}
-              secondary={
-                product.expiryDate
-                  ? `תוקף עד: ${new Date(product.expiryDate).toLocaleDateString("he-IL")}`
-                  : "ללא תאריך תפוגה"
+        {/* רשימת מוצרים */}
+        <Typography variant="h6" mt={4}>
+          מוצרים במלאי:
+        </Typography>
+        <List>
+          {products.map((product) => (
+            <ListItem
+              key={product.id}
+              secondaryAction={
+                <IconButton edge="end" onClick={() => handleDelete(product.id)}>
+                  <DeleteIcon />
+                </IconButton>
               }
-            />
-          </ListItem>
-        ))}
-      </List>
+            >
+              <ListItemText
+                primary={`${product.name} - ${product.quantity} יחידות`}
+                secondary={
+                  product.expiryDate
+                    ? `תוקף עד: ${new Date(
+                        product.expiryDate
+                      ).toLocaleDateString("he-IL")}`
+                    : "ללא תאריך תפוגה"
+                }
+              />
+            </ListItem>
+          ))}
+        </List>
+      </Paper>
     </Box>
   );
 };

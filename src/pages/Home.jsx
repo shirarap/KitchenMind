@@ -34,37 +34,54 @@ const Home = () => {
   };
 
   return (
-    <Box
+<Box
+  sx={{
+    height: "100vh",
+    backgroundImage: "url('/background.jpg')",
+    backgroundSize: "cover",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: "20px",
+    color: "#fff",
+    textShadow: "2px 2px 5px rgba(0, 0, 0, 0.7)",
+  }}
+>
+  <Box sx={{ textAlign: "center" }}>
+    {/* תמונה קרובה לטקסט, מעליו */}
+    <img
+      src="/name.png"
+      alt="Kitchen Mind Logo"
+      style={{
+        maxWidth: "23%",
+        height: "auto",
+        marginBottom: "-40px", // מוריד את המרווח מהכיתוב שמתחת
+        marginRight: "140px",  // מותאם לשפה מימין לשמאל
+        filter: "drop-shadow(1px 1px 3px rgba(0,0,0,0.6))",
+      }}
+    />
+
+    {/* כיתוב ברוכים הבאים */}
+    <Typography
+      variant="h2"
+      gutterBottom
       sx={{
-        height: "100vh",
-        backgroundImage: "url('/background.jpg')",
-        backgroundSize: "cover",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center", // מיקום במרכז
-        paddingTop: "20px", // ריווח קטן מלמעלה
-        color: "#fff", // צבע טקסט לבן
-        textShadow: "2px 2px 5px rgba(0, 0, 0, 0.7)", // הצללה חזקה
+        fontSize: "2.7rem",
+        fontWeight: "bold",
+        color: "black", 
+        textShadow: "1px 1px 3px rgba(0,0,0,0.5)",
+        marginBottom: "60px",
+        marginRight: "150px",
       }}
     >
-      <Typography
-        variant="h2"
-        gutterBottom
-        sx={{
-          fontSize: "4.5rem",             // גודל גופן גדול
-          fontWeight: "bold",           // גופן עבה
-          textAlign: "center",          // יישור למרכז
-          color: "#fff",                // צבע טקסט לבן
-          textStroke: "1.5px #828799",    // מסגרת של 2px בצבע #828799
-          WebkitTextStroke: "1.5px #828799", // תמיכה ב-WebkitTextStroke לדפדפנים מודרניים
-          marginBottom: "20px",         // רווח בין הכיתוב לכפתור
-        }}
-      >
-        ברוכים הבאים <br />Kitchen Mind
-      </Typography>
+      ברוכים הבאים
+    </Typography>
+  
+   
 
       <br />
+      
 
       {userName ? (
         <Box sx={{ textAlign: "center" }}>
@@ -85,6 +102,8 @@ const Home = () => {
             boxShadow: "0 3px 5px rgba(0,0,0,0.3)", // הצללה
             paddingX: 3,
             paddingY: 1,
+            marginTop: "-120px", // מרווח שלילי כדי להרים את הכפתור
+            marginRight: "120px",
             '&:hover': {
               backgroundColor: "#758F80",
             },
@@ -93,6 +112,8 @@ const Home = () => {
           התחבר / הירשם
         </Button>
       )}
+      </Box>
+
 
       {/* מודל התחברות */}
       <Modal open={open} onClose={handleClose}>

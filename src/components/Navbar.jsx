@@ -44,14 +44,18 @@ const Navbar = ({ openLoginModal }) => {  // הוספנו את פרמטר הפו
           <Button color="inherit" component={Link} to="/" sx={navButtonStyle}>
             בית
           </Button>
+          <Button color="inherit" component={Link} to="/about" sx={navButtonStyle}>
+אודות          </Button>
+      
+
           <Button color="inherit" component={Link} to="/inventory" sx={navButtonStyle}>
             מלאי
           </Button>
           <Button color="inherit" component={Link} to="/shopping-list" sx={navButtonStyle}>
             רשימת קניות
           </Button>
-        </Box>
-
+         
+          </Box>
         {/* צד שמאל: מידע על המשתמש */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           {user ? (
