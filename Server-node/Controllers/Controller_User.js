@@ -78,27 +78,10 @@ const loginUser = async (req, res) => {
 
 const getUser = async (req, res) => {
     try {
-        // נשלוף את הטוקן מה-headers
-        const authHeader = req.headers.authorization;
-
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            return res.status(401).json({ message: 'No token provided' });
-        }
-
-        const token = authHeader.split(' ')[1];
-
-        // נפרש את הטוקן ונשלוף את ה-userId
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const userId = decoded.userId;
-
-        // נביא את המשתמש מהמסד לפי ה-id
-        const user = await User.findById(userId).select('-password');
-
+        const user = await User.findById(req.userId).select('-password');
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-
-        // נחזיר את פרטי המשתמש
         res.status(200).json(user);
     } catch (err) {
         console.error('Error in getUser:', err);
