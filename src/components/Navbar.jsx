@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   AppBar,
   Toolbar,
@@ -9,12 +9,20 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../features/auth/authSlice";
+import { logout, fetchUserData } from "../features/auth/authSlice";
 import PersonIcon from "@mui/icons-material/Person"; // אייקון של איש
 
-const Navbar = ({ openLoginModal }) => {  // הוספנו את פרמטר הפונקציה
+const Navbar = ({ openLoginModal }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  // טעינת נתוני המשתמש בעת טעינת הקומפוננטה אם יש טוקן
+  useEffect(() => {
+    if (isAuthenticated && !user) {
+      dispatch(fetchUserData());
+    }
+  }, [isAuthenticated, dispatch, user]);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -24,6 +32,9 @@ const Navbar = ({ openLoginModal }) => {  // הוספנו את פרמטר הפו
     fontSize: "1.1rem",
     fontWeight: "bold",
   };
+
+  // הוספת לוג לבדיקה (אפשר להסיר לאחר שהכל עובד)
+  console.log("Current user state:", user);
 
   return (
     <AppBar
@@ -45,17 +56,15 @@ const Navbar = ({ openLoginModal }) => {  // הוספנו את פרמטר הפו
             בית
           </Button>
           <Button color="inherit" component={Link} to="/about" sx={navButtonStyle}>
-אודות          </Button>
-      
-
+            אודות
+          </Button>
           <Button color="inherit" component={Link} to="/inventory" sx={navButtonStyle}>
             מלאי
           </Button>
           <Button color="inherit" component={Link} to="/shopping-list" sx={navButtonStyle}>
             רשימת קניות
           </Button>
-         
-          </Box>
+        </Box>
         {/* צד שמאל: מידע על המשתמש */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           {user ? (
@@ -65,7 +74,7 @@ const Navbar = ({ openLoginModal }) => {  // הוספנו את פרמטר הפו
                   <PersonIcon sx={{ fontSize: "inherit" }} />
                 </IconButton>
                 <Typography sx={{ fontSize: "1.2rem", fontWeight: "bold", color: "#fff" }}>
-                  {user.email || "משתמש"}
+                  {user.name || "שם משתמש"}
                 </Typography>
               </Box>
               <Button color="inherit" onClick={handleLogout} sx={navButtonStyle}>

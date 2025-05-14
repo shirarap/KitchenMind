@@ -3,7 +3,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } 
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../features/products/productSlice";
-
+// שינוי שם השדה expiryDate ל-expirationDate כדי שיתאים למודל בשרת
 export default function AddProductForm({ open, onClose }) {
   const { register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export default function AddProductForm({ open, onClose }) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField label="שם מוצר" fullWidth margin="normal" {...register('name')} required />
           <TextField label="כמות" fullWidth margin="normal" type="number" {...register('quantity')} required />
-          <TextField label="תוקף" fullWidth margin="normal" type="date" {...register('expiryDate')} InputLabelProps={{ shrink: true }} required />
+<TextField label="תוקף" fullWidth margin="normal" type="date" {...register('expirationDate')} InputLabelProps={{ shrink: true }} required />
           <DialogActions>
             <Button onClick={onClose}>ביטול</Button>
             <Button
