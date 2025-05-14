@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import InventoryPage from "./pages/InventoryPage";
 import ShoppingListPage from "./pages/ShoppingListPage";
 import NotFound from "./pages/NotFound";
-import Navbar from "./components/Navbar";
+import Navbar from "./pages/Navbar";
 import About from './pages/About'; // וודא שהנתיב נכון
 
 /**
