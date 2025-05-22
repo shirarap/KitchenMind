@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 const InventoryPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, token } = useSelector((state) => state.auth);
+  const { user, token } = useSelector((state) => state.auth);  // קבלת ה־token מ־Redux
   const { items: products, status, error } = useSelector((state) => state.products);
   
   const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ const InventoryPage = () => {
   // בדיקה אם המשתמש מחובר, אם לא - ניווט לדף הבית
   useEffect(() => {
     if (!token) {
-      navigate("/");
+      navigate("/");  // אם אין token, יש לנווט לדף הבית
       return;
     }
     
@@ -55,14 +55,16 @@ const InventoryPage = () => {
     }
 
     try {
+      // שליחה לשרת עם ה־token בכותרת Authorization
       await dispatch(addProduct({
         name: formData.name,
         quantity: Number(formData.quantity),
         expirationDate: formData.expirationDate || null,
         category: formData.category,
+        token: token,  // הוספת ה־token כאן
       })).unwrap();
       
-      // איפוס הטופס לאחר הוספה מוצלחת
+      // איפוס הטופס לאחר הוספה מוצלחה
       setFormData({ name: "", quantity: "", expirationDate: "", category: "" });
     } catch (err) {
       console.error("שגיאה בהוספת מוצר:", err);

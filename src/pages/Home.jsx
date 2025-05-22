@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Button, Modal, TextField, Alert, CircularProgress } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, registerUser, clearError } from "../features/auth/authSlice";
+import { loginUser, registerUser, clearError, fetchUserData } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -21,7 +21,7 @@ const Home = () => {
   // בודק אם המשתמש כבר מחובר בעת טעינת הדף
   useEffect(() => {
     if (token && !user) {
-      dispatch(getUserDetails());
+      dispatch(fetchUserData());
     }
   }, [token, user, dispatch]);
 
