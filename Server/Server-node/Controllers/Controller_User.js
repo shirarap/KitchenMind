@@ -49,33 +49,40 @@ const registerUser = async (req, res) => {
 
 };
 const loginUser = async (req, res) => {
-    const { email, password } = req.body;
-    // בדיקה אם כל השדות מולאו
-    if (!email || !password) {
-        return res.status(400).json({ message: 'יש למלא את כל השדות' }); // אם יש שדה ריק, מחזירים שגיאה
-    }
-    const userExists = await User.findOne({ email });
-    if (!userExists) {
-        return res.status(400).json({ message: 'The User not exists.' }); // אם המשתמש לא קיים, מחזירים שגיאה
-    }
-    const isPasswordValid = await bcrypt.compare(password, userExists.password);
-    // אם הסיסמה לא נכונה, מחזירים שגיאה
-    if (!isPasswordValid) {
-        return res.status(400).json({ message: 'Incorrect password.' });
-    }
+    try {
+        const { email, password } = req.body;
 
-    // יצירת טוקן JWT לאחר שהמשתמש זוהה בהצלחה
-    const token = jwt.sign(
-        {
-            userId: userExists._id // מכניסים את ה-ID של המשתמש לטוקן
-        },
-        process.env.JWT_SECRET, // המפתח הסודי ליצירת הטוקן
-        { expiresIn: '3w' } // תוקף הטוקן לשלושה שבועות
-    );
+        if (!email || !password) {
+            return res.status(400).json({ message: 'יש למלא את כל השדות' });
+        }
 
-    // שליחת הטוקן בתשובה עם סטטוס 200 (התחברות הצליחה)
-    res.status(200).json({ token , UserName: userExists.UserName})
+        const userExists = await User.findOne({ email });
+
+        if (!userExists) {
+            return res.status(400).json({ message: 'The User not exists.' });
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, userExists.password);
+
+        if (!isPasswordValid) {
+            return res.status(400).json({ message: 'Incorrect password.' });
+        }
+
+        const token = jwt.sign(
+            {
+                userId: userExists._id
+            },
+            process.env.JWT_SECRET,
+            { expiresIn: '3w' }
+        );
+
+        res.status(200).json({ token, UserName: userExists.UserName });
+    } catch (error) {
+        console.error('❌ Login error:', error.message); // חשוב להדפיס את השגיאה
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
 };
+
 
 const getUser = async (req, res) => {
     try {
