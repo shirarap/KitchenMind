@@ -19,9 +19,8 @@ export default [
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-    }, proxy: {
-      '/user': 'http://localhost:3000',
-      '/product': 'http://localhost:3000'
+
+
     },
     rules: {
       ...js.configs.recommended.rules,
