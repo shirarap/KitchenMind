@@ -1,0 +1,65 @@
+[33mcommit e8207bd9eeff89e135d4f94cc48217ad4605172d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mClient[m[33m, [m[1;31morigin/Client[m[33m)[m
+Author: mira5802 <mc8505802@gmail.com>
+Date:   Sun May 4 13:39:21 2025 +0300
+
+    Removed old project files
+
+[33mcommit 90cf3f9236cc00e936652654d17fc85a354836b4[m
+Author: mira5802 <mc8505802@gmail.com>
+Date:   Sun May 4 13:29:15 2025 +0300
+
+    feat:New React side works well and is well designed
+
+[33mcommit a12dadd7c0414f48d09958ba53eba6ebd8db7e50[m
+Author: mira5802 <mc8505802@gmail.com>
+Date:   Sun Apr 27 21:40:23 2025 +0300
+
+    כקשא:Adding and editing page components
+
+[33mcommit 6c031050dd32b5c067ca263cb543b9f9fbe00a4d[m
+Author: mira5802 <mc8505802@gmail.com>
+Date:   Tue Apr 22 20:27:02 2025 +0300
+
+    feat: Creating a React-Vite project + installing required libraries+ Setting up organized folders
+
+[33mcommit f4f3d7b96560f0c2ac69d5660986684f2a4cc346[m
+Author: mira5802 <mc8505802@gmail.com>
+Date:   Tue Apr 22 20:21:26 2025 +0300
+
+    Setting up organized folders
+
+[33mcommit b77f1f77de8bc8456b16288b8c1fac91ecb4bdbb[m
+Author: mira5802 <mc8505802@gmail.com>
+Date:   Tue Apr 22 20:11:41 2025 +0300
+
+     Creating a React-Vite project + installing required libraries
+
+[33mcommit 1bded2e4362943d0582d80611bcbe8ac6957e514[m
+Author: mira5802 <mc8505802@gmail.com>
+Date:   Tue Apr 22 19:42:50 2025 +0300
+
+    הודעת הקומיט שלך
+
+[33mcommit f7525b7a3e8fe103f09db694e11290db7a1e6d5a[m
+Author: mira5802 <mc8505802@gmail.com>
+Date:   Tue Apr 22 19:24:24 2025 +0300
+
+    הודעת הקומיט שלך
+
+[33mcommit 673d1071f7ab45c87ffb4144a93bd65addde6f8a[m
+Author: mira5802 <mc8505802@gmail.com>
+Date:   Tue Apr 22 14:26:15 2025 +0300
+
+    feat:add client-react directory
+
+[33mcommit 728f71f21a41e38d529e7631b5b4785979956682[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: shira rap <8041shira@gmail.com>
+Date:   Sat Mar 29 21:23:14 2025 +0300
+
+    feat:Initial commit
+
+[33mcommit 745c6b32d9873117e02047bddf07998b42febb96[m
+Author: shira rap <8041shira@gmail.com>
+Date:   Sat Mar 29 21:26:01 2025 +0300
+
+    Initial commit
